@@ -12,9 +12,26 @@ trans_VM = gettext.translation(
   "voteMajorite", localedir, languages=[params.getp("LANG")]).ugettext
 
 
+VOTES = {
+    0: trans_VM("In favor"),
+    1: trans_VM("Against")
+}
+
+
+def get_vote(code_or_name):
+    if type(code_or_name) is int:
+        return VOTES.get(code_or_name, None)
+    elif type(code_or_name) is str:
+        for k, v in VOTES.viewitems():
+            if v.lower() == code_or_name.lower():
+                return k
+    return None
+
+
 def get_histo_head():
     return [trans_VM(u"Policy"), trans_VM(u"Your vote"),
             trans_VM(u"The majority vote"), trans_VM(u"Your payoff")]
+
 
 
 def get_text_summary(periods_content):
