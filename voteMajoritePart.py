@@ -2,17 +2,15 @@
 
 import logging
 from datetime import datetime
-from collections import OrderedDict
 from twisted.internet import defer
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, Float, ForeignKey, String
 
 from server.servbase import Base
 from server.servparties import Partie
-from util.utili18n import le2mtrans
 from util.utiltools import get_module_attributes
 import voteMajoriteParams as pms
-import voteMajoriteTexts as texts
+import voteMajoriteTexts as texts_VM
 
 
 logger = logging.getLogger("le2m")
@@ -28,12 +26,8 @@ class PartieVM(Partie):
         super(PartieVM, self).__init__("voteMajorite", "VM")
         self._le2mserv = le2mserv
         self.joueur = joueur
-        self._texte_recapitulatif = u""
-        self._texte_final = u""
         self.VM_gain_ecus = 0
         self.VM_gain_euros = 0
-        self.periods = {}
-        self._currentperiod = None
         self._profile = None
 
     @property
@@ -58,9 +52,7 @@ class PartieVM(Partie):
         :return:
         """
         logger.debug(u"{} New Period".format(self.joueur))
-        if period == 1:
-            del self._histo_content[1:]
-        self._currentperiod = RepetitionsVM(period)
+        self.currentperiod = RepetitionsVM(period)
         self.currentperiod.VM_profil = self._profile
         self.currentperiod.VM_group = self.joueur.groupe
         self._le2mserv.gestionnaire_base.ajouter(self.currentperiod)
@@ -122,7 +114,8 @@ class PartieVM(Partie):
         :return:
         """
         logger.debug(u"{} Summary".format(self.joueur))
-        self._texte_recapitulatif = texts.get_recapitulatif(self.periods)
+        periods_content = [v for k, v in sorted(self.periods.viewitems())]
+        self._texte_recapitulatif = texts_VM.get_text_summary(self.periods)
         get_trans = lambda code: u"pour" if not code else u"contre"
         for p in range(1, pms.NOMBRE_PERIODES+1):
             line = []
@@ -133,7 +126,7 @@ class PartieVM(Partie):
                     line.append(getattr(self.periods.get(p), v))
             self._histo_content.append(line)
         yield(self.remote.callRemote(
-            "display_summary", self._texte_recapitulatif, self._histo_content,
+            "display_summary", texts_VM.get_text_summary(periods_content), self._histo_content,
             pms.PROFILES[self._profile]))
         self.joueur.info("Ok")
         self.joueur.remove_waitmode()
