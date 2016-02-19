@@ -46,8 +46,7 @@ class RemoteVM(IRemote):
 
     def remote_display_summary(self, periods_content, profile):
         logger.info(u"{} Summary".format(self._le2mclt.uid))
-        for line in periods_content:
-            self.histo.append([line.get(k) for k in self._histo_vars])
+        self.histo.extend(self._get_histo_content(periods_content))
         if self._le2mclt.simulation:
             return 1
         else:
@@ -58,3 +57,16 @@ class RemoteVM(IRemote):
                 list_summary=self.histo, profile=profile)
             ecran_recap.show()
             return defered
+
+    def _get_histo_content(self, periods_content):
+        hc = []
+        for line in periods_content:
+            histo_line = []
+            for v in self._histo_vars:
+                if v in ["VM_decision", "VM_majority"]:
+                    histo_line.append(texts_VM.get_vote(line.get(v)))
+                else:
+                    histo_line.append(line.get(v))
+            hc.append(histo_line)
+        return hc
+
