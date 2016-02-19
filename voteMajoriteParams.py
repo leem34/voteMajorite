@@ -7,7 +7,6 @@ Parameters can be changed, but for safety reasons please contact the developer
 
 # variables
 TREATMENTS = {0: "baseline"}
-VOTES = {0: "In favor", 1: "Against"}
 
 # parameters
 TREATMENT = 0
@@ -36,16 +35,6 @@ def get_treatment(code_or_name):
         return TREATMENTS.get(code_or_name, None)
     elif type(code_or_name) is str:
         for k, v in TREATMENTS.viewitems():
-            if v.lower() == code_or_name.lower():
-                return k
-    return None
-
-
-def get_vote(code_or_name):
-    if type(code_or_name) is int:
-        return VOTES.get(code_or_name, None)
-    elif type(code_or_name) is str:
-        for k, v in VOTES.viewitems():
             if v.lower() == code_or_name.lower():
                 return k
     return None
