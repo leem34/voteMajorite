@@ -1,2 +1,2 @@
 # voteMajorite
-A program for LE2M
+A program to be used with LE2M.
