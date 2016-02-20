@@ -7,6 +7,8 @@ Parameters can be changed, but for safety reasons please contact the developer
 
 # variables
 TREATMENTS = {0: "baseline"}
+IN_FAVOR = 0
+AGAINST = 1
 
 # parameters
 TREATMENT = 0

@@ -5,20 +5,23 @@ import voteMajoriteParams as pms
 import os
 import configuration.configparam as params
 import gettext
+import logging
 
 
+logger = logging.getLogger("le2m")
 localedir = os.path.join(params.getp("PARTSDIR"), "voteMajorite", "locale")
 trans_VM = gettext.translation(
   "voteMajorite", localedir, languages=[params.getp("LANG")]).ugettext
 
 
 VOTES = {
-    0: trans_VM("In favor"),
-    1: trans_VM("Against")
+    pms.IN_FAVOR: trans_VM("In favor"),
+    pms.AGAINST: trans_VM("Against")
 }
 
 
 def get_vote(code_or_name):
+    logger.debug(u"get_vote with arg {}".format(code_or_name))
     if type(code_or_name) is int:
         return VOTES.get(code_or_name, None)
     elif type(code_or_name) is str:
@@ -43,30 +46,31 @@ def get_text_summary(periods_content):
                 line.get("VM_period"),
                 get_pluriel(line.get("VM_pour"), trans_VM(u"people")),
                 get_pluriel(line.get("VM_contre"), trans_VM(u"people")),
-                trans_VM(pms.get_vote(line.get("VM_majority"))))
+                get_vote(line.get("VM_majority")))
 
-        txt += trans_VM(u"The policy is {}\n").format(
-            trans_VM(u"applied")) if \
-            line.get("VM_majority") == pms.get_vote("In favor") else \
-            trans_VM(u"is not applied")
+        txt += trans_VM(u" <strong>The policy is {}</strong><br />").format(
+            trans_VM(u"applied") if \
+            line.get("VM_majority") == get_vote(trans_VM("In favor")) else \
+            trans_VM(u"is not applied"))
 
     gains = [line.get("VM_periodpayoff") for line in periods_content]
-    txt += trans_VM(u"\nYour payoff is equal to {} = {}, which corresponds "
+    txt += trans_VM(u"<br />Your payoff is equal to {} = {}, which corresponds "
                     u"to {}.").format(
         " + ".join(map(str, gains)),
-        get_pluriel(periods_content[-1].get("VM_cumulativepayoff"), u"ecu"),
+        get_pluriel(periods_content[-1].get("VM_cumulativepayoff"), pms.MONNAIE),
         get_pluriel(periods_content[-1].get("VM_cumulativepayoff") *
                     pms.TAUX_CONVERSION, u"euro"))
     return txt
 
 
-def get_text_explanation(period, profil):
+def get_text_explanation(period, profile):
     txt = trans_VM(u"Policy") + u" {}".format(period)
     txt += u"<br />" + \
            trans_VM(u"If the policy applies it will cost you {} "
                     u"and will provide you a payoff of {}.").format(
             get_pluriel(pms.COUTS[period-1], pms.MONNAIE),
-            get_pluriel(pms.PROFILES[profil][period-1], pms.MONNAIE))
-    txt += u"<br />" + trans_VM(u"You must vote either in favor of or against the "
-                            u"policy.")
+            get_pluriel(profile[period-1], pms.MONNAIE))
+    txt += u"<br />" + \
+           trans_VM(u"You must vote either in favor of or against the "
+                    u"policy.")
     return txt

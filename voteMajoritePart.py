@@ -55,7 +55,7 @@ class PartieVM(Partie):
         logger.debug(u"{} Decision".format(self.joueur))
         debut = datetime.now()
         self.currentperiod.VM_decision = yield(self.remote.callRemote(
-            "display_decision", pms.PROFILES[self._profile]))
+            "display_decision", pms.PROFILES.get(self._profile)))
         self.currentperiod.VM_decisiontime = (datetime.now() - debut).seconds
         self.joueur.info(u"{}".format(self.currentperiod.VM_decision))
         self.joueur.remove_waitmode()
@@ -64,10 +64,9 @@ class PartieVM(Partie):
         logger.debug(u"{} Period Payoff".format(self.joueur))
         self.currentperiod.VM_periodpayoff = 0
 
-        if self.currentperiod.VM_majority == texts_VM.get_vote(
-                texts_VM.trans_VM(u"In favor")):  # pour
+        if self.currentperiod.VM_majority == pms.IN_FAVOR:  # pour
             self.currentperiod.VM_periodpayoff = \
-                pms.PROFILES[self._profile][self.currentperiod.VM_period - 1] - \
+                pms.PROFILES.get(self._profile)[self.currentperiod.VM_period - 1] - \
                 pms.COUTS[self.currentperiod.VM_period - 1]
 
         # cumulative payoff since the first period
@@ -96,7 +95,8 @@ class PartieVM(Partie):
             "display_summary", periods_content, pms.PROFILES[self._profile]))
         self.joueur.info("Ok")
         self.joueur.remove_waitmode()
-    
+
+    @defer.inlineCallbacks
     def compute_partpayoff(self):
         logger.debug(u"{} Part Payoff".format(self.joueur))
 

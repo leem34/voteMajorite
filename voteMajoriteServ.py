@@ -8,7 +8,8 @@ import voteMajoriteParams as pms
 from voteMajoriteGui import DConfig
 import random
 from util.utili18n import le2mtrans
-from voteMajoriteTexts import trans_VM
+import voteMajoriteTexts as texts_VM
+
 
 logger = logging.getLogger("le2m.{}".format(__name__))
 
@@ -30,7 +31,7 @@ class Serveur(object):
             lambda _: self._le2mserv.gestionnaire_experience.\
             display_payoffs_onserver("voteMajorite")
         self._le2mserv.gestionnaire_graphique.add_topartmenu(
-            trans_VM(u"Majority Vote"), actions)
+            texts_VM.trans_VM(u"Majority Vote"), actions)
 
         self._profils = None
 
@@ -43,7 +44,7 @@ class Serveur(object):
         if screen.exec_():
             self._profils = screen.get_profiles()
             self._le2mserv.gestionnaire_graphique.infoserv(
-                trans_VM(u"Profiles") + u": {}".format(self._profils))
+                texts_VM.trans_VM(u"Profiles") + u": {}".format(self._profils))
 
     @defer.inlineCallbacks
     def _demarrer(self):
@@ -54,12 +55,12 @@ class Serveur(object):
         # check conditions =====================================================
         if not self._profils:
             self._le2mserv.gestionnaire_graphique.display_error(
-                trans_VM(u"Profiles not defined, please configure the part"))
+                texts_VM.trans_VM(u"Profiles not defined, please configure the part"))
             return
         if len(self._profils) < \
             self._le2mserv.gestionnaire_joueurs.nombre_joueurs / pms.TAILLE_GROUPES:
             self._le2mserv.gestionnaire_graphique.display_error(
-                trans_VM(u"There is not enougth profiles compared to groups"))
+                texts_VM.trans_VM(u"There is not enougth profiles compared to groups"))
             return
         if self._le2mserv.gestionnaire_joueurs.nombre_joueurs % \
             pms.TAILLE_GROUPES != 0:
@@ -128,9 +129,9 @@ class Serveur(object):
             votes_pour = self._le2mserv.gestionnaire_joueurs.nombre_joueurs - \
                          votes_contre
             if votes_pour > votes_contre:
-                majority = 0
+                majority = pms.IN_FAVOR
             elif votes_pour < votes_contre:
-                majority = 1
+                majority = pms.AGAINST
             else:
                 majority = random.randint(0, 1)
             for j in self._le2mserv.gestionnaire_joueurs.get_players(
@@ -139,18 +140,19 @@ class Serveur(object):
                 j.currentperiod.VM_contre = votes_contre
                 j.currentperiod.VM_majority = majority
             self._le2mserv.gestionnaire_graphique.infoserv(
-                u"Pour {}, Contre {}, maj. {}".format(
-                    votes_pour, votes_contre,
-                    u"Pour" if not majority else u"Contre"))
+                texts_VM.trans_VM(u"In favor") + u" {}, ".format(votes_pour) +
+                texts_VM.trans_VM(u"Against") + u" {},".format(votes_contre) +
+                texts_VM.trans_VM(u"Majority") + u" {}".format(
+                    texts_VM.get_vote(majority)))
 
             # period payoffs
             self._le2mserv.gestionnaire_experience.compute_periodpayoffs(
                 "voteMajorite")
 
         # summary: only at the end of the part
-        yield(self._le2mserv.gestionnaire_experience.run_step(
+        yield (self._le2mserv.gestionnaire_experience.run_step(
             le2mtrans(u"Summary"), self._tous, "display_summary"))
         
         # End of part ----------------------------------------------------------
-        self._le2mserv.gestionnaire_experience.finalize_part(
-            "voteMajorite")
+        yield (self._le2mserv.gestionnaire_experience.finalize_part(
+            "voteMajorite"))
