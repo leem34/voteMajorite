@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: voteMajorite\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-20 09:15+0100\n"
-"PO-Revision-Date: 2016-02-20 09:16+0100\n"
+"POT-Creation-Date: 2016-02-20 10:23+0100\n"
+"PO-Revision-Date: 2016-02-20 10:24+0100\n"
 "Last-Translator: Dimitri DUBOIS <dimitri.dubois@umontpellier.fr>\n"
 "Language-Team: Dimitri DUBOIS <dimitri.dubois@umontpellier.fr>\n"
 "Language: en_US\n"
@@ -18,83 +18,90 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteServ.py:33
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteServ.py:34
 msgid "Majority Vote"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteServ.py:46
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteServ.py:47
 msgid "Profiles"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteServ.py:57
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteServ.py:58
 msgid "Profiles not defined, please configure the part"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteServ.py:62
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteServ.py:63
 msgid "There is not enougth profiles compared to groups"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoritePart.py:68
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:16
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteServ.py:143
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:18
 msgid "In favor"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:17
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteServ.py:144
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:19
 msgid "Against"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:32
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:64
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteServ.py:145
+msgid "Majority"
+msgstr ""
+
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:35
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:68
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteGui.py:30
 msgid "Policy"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:32
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:35
 msgid "Your vote"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:33
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:36
 msgid "The majority vote"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:33
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:36
 msgid "Your payoff"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:41
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:43
 msgid "Policy {}: {} \"In favor\", {} \"Against\", Majority: \"{}\". "
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:44
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:45
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:46
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:47
 msgid "people"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:48
-msgid "The policy is {}\n"
-msgstr ""
-
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:49
-msgid "applied"
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:50
+msgid "The policy is {}"
 msgstr ""
 
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:51
+msgid "applied"
+msgstr ""
+
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:53
 msgid "is not applied"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:54
-msgid ""
-"\n"
-"Your payoff is equal to {} = {}, which corresponds to {}."
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:56
+msgid "Your payoff is equal to"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:66
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:61
+msgid "which corresponds to"
+msgstr ""
+
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:70
 msgid ""
 "If the policy applies it will cost you {} and will provide you a payoff of "
 "{}."
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:70
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:75
 msgid "You must vote either in favor of or against the policy."
 msgstr ""
 
