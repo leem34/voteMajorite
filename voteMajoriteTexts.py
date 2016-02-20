@@ -50,7 +50,7 @@ def get_text_summary(periods_content):
         txt += u" <strong>" + trans_VM(u"The policy is" + u" " + u"{}").format(
             trans_VM(u"applied") if \
             line.get("VM_majority") == pms.IN_FAVOR else
-            trans_VM(u"is not applied")) + u"</strong><br />"
+            trans_VM(u"is not applied")) + u".</strong><br />"
 
     gains = [line.get("VM_periodpayoff") for line in periods_content]
     txt += u"<br />" + trans_VM(u"Your payoff is equal to") + \
