@@ -59,7 +59,7 @@ def get_text_summary(periods_content):
                get_pluriel(periods_content[-1].get(
                    "VM_cumulativepayoff"), pms.MONNAIE)) + \
            trans_VM(u"which corresponds to") + \
-           u"{}.".format(get_pluriel(periods_content[-1].get(
+           u" {}.".format(get_pluriel(periods_content[-1].get(
                "VM_cumulativepayoff") * pms.TAUX_CONVERSION, u"euro"))
     return txt
 
