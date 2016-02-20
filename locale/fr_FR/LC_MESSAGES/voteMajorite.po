@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: voteMajorite\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-19 19:55+0100\n"
-"PO-Revision-Date: 2016-02-19 20:03+0100\n"
+"POT-Creation-Date: 2016-02-20 09:15+0100\n"
+"PO-Revision-Date: 2016-02-20 09:16+0100\n"
 "Last-Translator: Dimitri DUBOIS <dimitri.dubois@umontpellier.fr>\n"
 "Language-Team: Dimitri DUBOIS <dimitri.dubois@umontpellier.fr>\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
-"Language: fr_FR\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteServ.py:33
@@ -34,6 +34,7 @@ msgstr "Pofils non définis, merci de configurer la partie"
 msgid "There is not enougth profiles compared to groups"
 msgstr "Il n'y a pas assez de profiles par rapport au nombre de groupes"
 
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoritePart.py:68
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:16
 msgid "In favor"
 msgstr "Pour"
@@ -44,6 +45,7 @@ msgstr "Contre"
 
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:32
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:64
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteGui.py:30
 msgid "Policy"
 msgstr "Politique"
 
@@ -88,10 +90,29 @@ msgstr ""
 "\n"
 "Votre gain est de {} = {}, soit {}."
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:65
-msgid "If the policy applies it will cost you {}."
-msgstr "Si la poliltique est appliquée elle vous coutera {}."
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:66
+msgid ""
+"If the policy applies it will cost you {} and will provide you a payoff of "
+"{}."
+msgstr ""
+"Si la politique est appliquée elle vous coûtera {} et vous rapportera {}."
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:67
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:70
 msgid "You must vote either in favor of or against the policy."
 msgstr "Vous devez voter pour ou contre la politique."
+
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteGui.py:76
+msgid "You vote"
+msgstr "Vous votez"
+
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteGui.py:111
+msgid "You must vote"
+msgstr "Vous devez voter"
+
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteGui.py:184
+msgid ""
+"Select in the list on the left the profiles you want in the session and put "
+"it in the list on the right."
+msgstr ""
+"Sélectionner dans la liste de gauche les profils à utiliser dans la session "
+"et les passer dans la liste de droite."
