@@ -90,7 +90,8 @@ class PartieVM(Partie):
     @defer.inlineCallbacks
     def display_summary(self, *args):
         logger.debug(u"{} Summary".format(self.joueur))
-        periods_content = [v for k, v in sorted(self.periods.viewitems())]
+        periods_content = [v.todict() for k, v in
+                           sorted(self.periods.viewitems())]
         yield(self.remote.callRemote(
             "display_summary", periods_content, pms.PROFILES[self._profile]))
         self.joueur.info("Ok")
