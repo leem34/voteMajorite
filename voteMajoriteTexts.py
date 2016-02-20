@@ -36,7 +36,6 @@ def get_histo_head():
             trans_VM(u"The majority vote"), trans_VM(u"Your payoff")]
 
 
-
 def get_text_summary(periods_content):
     txt = u""
     for line in periods_content:
@@ -48,18 +47,20 @@ def get_text_summary(periods_content):
                 get_pluriel(line.get("VM_contre"), trans_VM(u"people")),
                 get_vote(line.get("VM_majority")))
 
-        txt += trans_VM(u" <strong>The policy is {}</strong><br />").format(
+        txt += u" <strong>" + trans_VM(u"The policy is" + u" " + u"{}").format(
             trans_VM(u"applied") if \
-            line.get("VM_majority") == get_vote(trans_VM("In favor")) else \
-            trans_VM(u"is not applied"))
+            line.get("VM_majority") == pms.IN_FAVOR else
+            trans_VM(u"is not applied")) + u"</strong><br />"
 
     gains = [line.get("VM_periodpayoff") for line in periods_content]
-    txt += trans_VM(u"<br />Your payoff is equal to {} = {}, which corresponds "
-                    u"to {}.").format(
-        " + ".join(map(str, gains)),
-        get_pluriel(periods_content[-1].get("VM_cumulativepayoff"), pms.MONNAIE),
-        get_pluriel(periods_content[-1].get("VM_cumulativepayoff") *
-                    pms.TAUX_CONVERSION, u"euro"))
+    txt += u"<br />" + trans_VM(u"Your payoff is equal to") + \
+           u" {} = {}, ".format(
+               " + ".join(map(str, gains)),
+               get_pluriel(periods_content[-1].get(
+                   "VM_cumulativepayoff"), pms.MONNAIE)) + \
+           trans_VM(u"which corresponds to") + \
+           u"{}.".format(get_pluriel(periods_content[-1].get(
+               "VM_cumulativepayoff") * pms.TAUX_CONVERSION, u"euro"))
     return txt
 
 
