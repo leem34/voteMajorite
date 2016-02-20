@@ -1,22 +1,14 @@
 # -*- coding: utf-8 -*-
-"""
-Ce module contient les boites de dialogue du programme.
-"""
 
 import logging
-import random
-
 from PyQt4 import QtGui, QtCore
-
-from client.cltgui.cltguidialogs import GuiHistorique
-from util.utili18n import le2mtrans
-from client import clttexts as textes_main
 from client.cltgui.cltguiwidgets import WExplication, WRadio
 import voteMajoriteParams as pms
-import voteMajoriteTexts as texts
+import voteMajoriteTexts as texts_VM
 from voteMajoriteGuiSrc import VM_pol
 from client.cltgui.cltguiwidgets import WListDrag, WTableview
 from client.cltgui.cltguitablemodels import TableModelHistorique
+from util.utili18n import le2mtrans
 
 
 logger = logging.getLogger("le2m")
@@ -35,7 +27,7 @@ class WPolitics(QtGui.QWidget):
 
         for i in range(1, 5):
             getattr(self.ui, "label_pol_{}".format(i)).setText(
-                u"Politique {}".format(i))
+                texts_VM.trans_VM(u"Policy") + u" {}".format(i))
             getattr(self.ui, "label_val_{}".format(i)).setText(str(profil[i-1]))
             if i == period:
                 getattr(self.ui, "label_pol_{}".format(i)).setStyleSheet(
@@ -70,7 +62,7 @@ class GuiDecision(QtGui.QDialog):
 
         # Explanation
         self._wexplanation = WExplication(
-            text=texts.get_explanation(periode), parent=self,
+            text=texts_VM.get_text_explanation(periode, profil), parent=self,
             size=(450, 80))
         self._layout.addWidget(self._wexplanation)
 
@@ -79,8 +71,9 @@ class GuiDecision(QtGui.QDialog):
         self._layout.addWidget(self._wpolitics)
 
         # Vote
+        votes = tuple([v for k, v in sorted(texts_VM.VOTES.viewitems())])
         self._wvote = WRadio(
-            label=u"Vous votez", texts=(u"Pour", u"Contre"),
+            label=texts_VM.trans_VM(u"You vote"), texts=votes,
             automatique=self._automatique, parent=self)
         self._layout.addWidget(self._wvote)
 
@@ -90,7 +83,7 @@ class GuiDecision(QtGui.QDialog):
         self._layout.addWidget(self._buttons)
 
         # title and size
-        self.setWindowTitle(texts.DECISION_titre)
+        self.setWindowTitle(le2mtrans(u"Decision"))
         self.adjustSize()
         self.setFixedSize(self.size())
 
@@ -109,19 +102,23 @@ class GuiDecision(QtGui.QDialog):
             self._timer_automatique.stop()
         except AttributeError:
             pass
+
         try:
             decision = self._wvote.get_checkedbutton()
         except ValueError:
-            QtGui.QMessageBox.warning(
-                self, u"Attention", u"Vous devez voter")
-            return
+            return QtGui.QMessageBox.warning(
+                self, le2mtrans(u"Warning"),
+                texts_VM.trans_VM(u"You must vote"))
+
         if not self._automatique:
             confirmation = QtGui.QMessageBox.question(
-                self, texts.DECISION_confirmation.titre,
-                texts.DECISION_confirmation.message,
+                self, le2mtrans(u"Confirmation"),
+                le2mtrans(u"Do you confirm your choice?"),
                 QtGui.QMessageBox.No | QtGui.QMessageBox.Yes)
             if confirmation != QtGui.QMessageBox.Yes: 
                 return
+
+        logger.info(u"Send back: {}".format(decision))
         self.accept()
         self._defered.callback(decision)
 
@@ -155,7 +152,7 @@ class DSummary(QtGui.QDialog):
         buttons.accepted.connect(self._accept)
         layout.addWidget(buttons)
 
-        self.setWindowTitle(u"Récapitulatif")
+        self.setWindowTitle(le2mtrans(u"Summary"))
         self.adjustSize()
         self.setFixedSize(self.size())
 
@@ -183,10 +180,10 @@ class DConfig(QtGui.QDialog):
         layout = QtGui.QVBoxLayout(self)
 
         self._wexplanation = WExplication(
-            text=u"Veuillez choisir les profils à utiliser dans la session.\n"
-                 u"A gauche la liste des profils disponibles.\n"
-                 u"Faire glisser dans la liste de droite les profils à "
-                 u"utiliser dans la session", parent=self, size=(400, 80))
+            text=texts_VM.trans_VM(
+                u"Select in the list on the left the profiles you want in "
+                u"the session and put it in the list on the right."),
+            parent=self, size=(400, 80))
         layout.addWidget(self._wexplanation)
 
         self._wlistdrag = WListDrag(
@@ -201,7 +198,7 @@ class DConfig(QtGui.QDialog):
         buttons.accepted.connect(self.accept)
         layout.addWidget(buttons)
 
-        self.setWindowTitle(u"Configuration")
+        self.setWindowTitle(le2mtrans(u"Configure"))
         self.adjustSize()
         self.setFixedSize(self.size())
 

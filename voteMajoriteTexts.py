@@ -60,10 +60,13 @@ def get_text_summary(periods_content):
     return txt
 
 
-def get_text_explanation(period):
+def get_text_explanation(period, profil):
     txt = trans_VM(u"Policy") + u" {}".format(period)
-    txt += u"\n" + trans_VM(u"If the policy applies it will cost you {}.").format(
-        get_pluriel(pms.COUTS[period-1], u"ecu"))
-    txt += u"\n" + trans_VM(u"You must vote either in favor of or against the "
+    txt += u"<br />" + \
+           trans_VM(u"If the policy applies it will cost you {} "
+                    u"and will provide you a payoff of {}.").format(
+            get_pluriel(pms.COUTS[period-1], pms.MONNAIE),
+            get_pluriel(pms.PROFILES[profil][period-1], pms.MONNAIE))
+    txt += u"<br />" + trans_VM(u"You must vote either in favor of or against the "
                             u"policy.")
     return txt
