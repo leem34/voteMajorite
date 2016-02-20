@@ -30,10 +30,6 @@ class PartieVM(Partie):
         self.VM_gain_euros = 0
         self._profile = None
 
-    @property
-    def currentperiod(self):
-        return self._currentperiod
-
     def set_profile(self, profile):
         self._profile = profile
 
@@ -45,12 +41,6 @@ class PartieVM(Partie):
 
     @defer.inlineCallbacks
     def newperiod(self, period):
-        """
-        Create a new period and inform the remote
-        If this is the first period then empty the historic
-        :param periode:
-        :return:
-        """
         logger.debug(u"{} New Period".format(self.joueur))
         self.currentperiod = RepetitionsVM(period)
         self.currentperiod.VM_profil = self._profile
@@ -62,11 +52,6 @@ class PartieVM(Partie):
 
     @defer.inlineCallbacks
     def display_decision(self):
-        """
-        Display the decision screen on the remote
-        Get back the decision
-        :return:
-        """
         logger.debug(u"{} Decision".format(self.joueur))
         debut = datetime.now()
         self.currentperiod.VM_decision = yield(self.remote.callRemote(
@@ -76,14 +61,11 @@ class PartieVM(Partie):
         self.joueur.remove_waitmode()
 
     def compute_periodpayoff(self):
-        """
-        Compute the payoff for the period
-        :return:
-        """
         logger.debug(u"{} Period Payoff".format(self.joueur))
         self.currentperiod.VM_periodpayoff = 0
 
-        if self.currentperiod.VM_majority == 0:  # pour
+        if self.currentperiod.VM_majority == texts_VM.get_vote(
+                texts_VM.trans_VM(u"In favor")):  # pour
             self.currentperiod.VM_periodpayoff = \
                 pms.PROFILES[self._profile][self.currentperiod.VM_period - 1] - \
                 pms.COUTS[self.currentperiod.VM_period - 1]
@@ -107,47 +89,22 @@ class PartieVM(Partie):
 
     @defer.inlineCallbacks
     def display_summary(self, *args):
-        """
-        Create the summary (txt and historic) and then display it on the
-        remote
-        :param args:
-        :return:
-        """
         logger.debug(u"{} Summary".format(self.joueur))
         periods_content = [v for k, v in sorted(self.periods.viewitems())]
-        self._texte_recapitulatif = texts_VM.get_text_summary(self.periods)
-        get_trans = lambda code: u"pour" if not code else u"contre"
-        for p in range(1, pms.NOMBRE_PERIODES+1):
-            line = []
-            for v in self._histo_build.viewvalues():
-                if v in ["VM_decision", "VM_majority"]:
-                    line.append(get_trans(getattr(self.periods.get(p), v)))
-                else:
-                    line.append(getattr(self.periods.get(p), v))
-            self._histo_content.append(line)
         yield(self.remote.callRemote(
-            "display_summary", texts_VM.get_text_summary(periods_content), self._histo_content,
-            pms.PROFILES[self._profile]))
+            "display_summary", periods_content, pms.PROFILES[self._profile]))
         self.joueur.info("Ok")
         self.joueur.remove_waitmode()
     
     def compute_partpayoff(self):
-        """
-        Compute the payoff of the part
-        :return:
-        """
         logger.debug(u"{} Part Payoff".format(self.joueur))
 
-        # gain partie
         self.VM_gain_ecus = self.currentperiod.VM_cumulativepayoff + pms.DOTATION
         self.VM_gain_euros = \
             float(self.VM_gain_ecus) * float(pms.TAUX_CONVERSION)
+        yield (self.remote.callRemote(
+            "set_payoffs", self.VM_gain_euros, self.VM_gain_ecus))
 
-        # texte final
-        self._texte_final = texts.get_texte_final(
-            self.VM_gain_ecus, self.VM_gain_euros)
-
-        logger.debug(u"{} Final text {}".format(self.joueur, self._texte_final))
         logger.info(u'{} Payoff ecus {} Payoff euros {:.2f}'.format(
             self.joueur, self.VM_gain_ecus, self.VM_gain_euros))
 
@@ -182,8 +139,9 @@ class RepetitionsVM(Base):
         self.VM_periodpayoff = 0
         self.VM_cumulativepayoff = 0
 
-    def todict(self, joueur):
+    def todict(self, joueur=None):
         temp = {c.name: getattr(self, c.name) for c in self.__table__.columns}
-        temp["joueur"] = joueur
+        if joueur:
+            temp["joueur"] = joueur
         return temp
 
