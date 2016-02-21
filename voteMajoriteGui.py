@@ -2,11 +2,11 @@
 
 import logging
 from PyQt4 import QtGui, QtCore
-from client.cltgui.cltguiwidgets import WExplication, WRadio
 import voteMajoriteParams as pms
 import voteMajoriteTexts as texts_VM
 from voteMajoriteGuiSrc import VM_pol
-from client.cltgui.cltguiwidgets import WListDrag, WTableview
+from client.cltgui.cltguiwidgets import WExplication, WRadio, WListDrag, \
+    WTableview
 from client.cltgui.cltguitablemodels import TableModelHistorique
 from util.utili18n import le2mtrans
 
@@ -204,3 +204,61 @@ class DConfig(QtGui.QDialog):
 
     def get_profiles(self):
         return self._wlistdrag.get_rightitems()
+
+
+class DEchelle(QtGui.QDialog):
+    def __init__(self, defered, automatique, parent, num_question):
+        super(DEchelle, self).__init__(parent)
+
+        self._defered = defered
+        self._automatique = automatique
+
+        layout = QtGui.QVBoxLayout(self)
+
+        self._radios = WRadio(
+            parent=self, automatique=self._automatique,
+            label=texts_VM.get_text_question(num_question),
+            texts=texts_VM.get_items_question(num_question))
+        layout.addWidget(self._radios)
+
+        buttons = QtGui.QDialogButtonBox(QtGui.QDialogButtonBox.Ok)
+        buttons.accepted.connect(self._accept)
+        layout.addWidget(buttons)
+
+        self.setWindowTitle(le2mtrans(u"Question"))
+        self.adjustSize()
+        self.setFixedSize(self.size())
+
+        if self._automatique:
+            self._timer_automatique = QtCore.QTimer()
+            self._timer_automatique.timeout.connect(
+                buttons.button(QtGui.QDialogButtonBox.Ok).click)
+            self._timer_automatique.start(7000)
+
+    def reject(self):
+        pass
+
+    def _accept(self):
+        try:
+            self._timer_automatique.stop()
+        except AttributeError:
+            pass
+
+        try:
+            checked = self._radios.get_checkedbutton()
+        except ValueError:
+            return QtGui.QMessageBox.warning(
+                self, le2mtrans(u"Warning"),
+                texts_VM.trans_VM(u"You must select one item"))
+
+        if not self._automatique:
+            confirm = QtGui.QMessageBox.question(
+                self, le2mtrans(u"Confirmation"),
+                le2mtrans(u"Do you confirm your choice?"),
+                QtGui.QMessageBox.No | QtGui.QMessageBox.Yes)
+            if confirm != QtGui.QMessageBox.Yes:
+                return
+
+        logger.info(u"Send back: {}".format(checked))
+        self.accept()
+        self._defered.callback(checked)

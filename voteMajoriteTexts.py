@@ -31,6 +31,33 @@ def get_vote(code_or_name):
     return None
 
 
+
+ADDITIONNAL_QUESTIONS = {
+    1: {
+        "text": trans_VM(u"En utilisant l'échelle ci-contre, indiquez votre "
+                         u"niveau de certitude au moment où vous avez voté, "
+                         u"sachant que<br />"
+                         u"1=totalement incertain et 10=totalement certain"),
+        "items": map(str, range(1, 11))
+    },
+    2: {
+        "text": trans_VM(u"En utilisant l'échelle ci-contre, indiquez à quel "
+                         u"point, <br />vous êtes heureux(se) en ce moment, "
+                         u"sachant que<br />"
+                         u"1=totalement triste et 7=totalement heureux(se)"),
+        "items": map(str, range(1, 8))
+    }
+}
+
+
+def get_text_question(num_question):
+    return ADDITIONNAL_QUESTIONS.get(num_question)["text"]
+
+
+def get_items_question(num_question):
+    return ADDITIONNAL_QUESTIONS.get(num_question)["items"]
+
+
 def get_histo_head():
     return [trans_VM(u"Policy"), trans_VM(u"Your vote"),
             trans_VM(u"The majority vote"), trans_VM(u"Your payoff")]

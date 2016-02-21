@@ -30,6 +30,8 @@ class Serveur(object):
         actions[le2mtrans(u"Display payoffs")] = \
             lambda _: self._le2mserv.gestionnaire_experience.\
             display_payoffs_onserver("voteMajorite")
+        actions[texts_VM.trans_VM(u"Display additional questions")] = \
+            lambda _: self._display_additionalquestion()
         self._le2mserv.gestionnaire_graphique.add_topartmenu(
             texts_VM.trans_VM(u"Majority Vote"), actions)
 
@@ -69,9 +71,8 @@ class Serveur(object):
                           u"group size"))
             return
 
-        confirmation = self._le2mserv.gestionnaire_graphique.\
-            question(le2mtrans(u"Start") + u" voteMajorite?")
-        if not confirmation:
+        if not self._le2mserv.gestionnaire_graphique.question(
+                        le2mtrans(u"Start") + u" voteMajorite?"):
             return
 
         # init part ============================================================
@@ -156,3 +157,24 @@ class Serveur(object):
         # End of part ----------------------------------------------------------
         yield (self._le2mserv.gestionnaire_experience.finalize_part(
             "voteMajorite"))
+
+
+    @defer.inlineCallbacks
+    def _display_additionalquestion(self):
+
+        players = self._le2mserv.gestionnaire_joueurs.get_players(
+            "voteMajorite")
+        if not players:
+            self._le2mserv.gestionnaire_graphique.display_warning(
+                texts_VM.trans_VM(u"You must start the part before to run "
+                                  u"the questionnaire"))
+            return
+        if not self._le2mserv.gestionnaire_graphique.question(
+            texts_VM.trans_VM(u"Do you want to start additional questions?")):
+            return
+
+        self._le2mserv.gestionnaire_graphique.infoclt(None)
+
+        yield (self._le2mserv.gestionnaire_experience.run_step(
+            texts_VM.trans_VM(u"Additional questions"), players,
+            "display_additionalquestion"))

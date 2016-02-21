@@ -109,6 +109,17 @@ class PartieVM(Partie):
         logger.info(u'{} Payoff ecus {} Payoff euros {:.2f}'.format(
             self.joueur, self.VM_gain_ecus, self.VM_gain_euros))
 
+    @defer.inlineCallbacks
+    def display_additionalquestion(self):
+        logger.debug(u"display_additionalquestion")
+        for k in sorted(texts_VM.ADDITIONNAL_QUESTIONS.viewkeys()):
+            tmp = yield (self.remote.callRemote(
+                "display_additionalquestion", k))
+            setattr(self.periods.get(1), "VM_question_{}".format(k), tmp)
+        self.joueur.info(u"Ok")
+        self.joueur.remove_waitmode()
+
+
 
 class RepetitionsVM(Base):
     __tablename__ = 'partie_voteMajorite_repetitions'
@@ -130,6 +141,8 @@ class RepetitionsVM(Base):
     VM_majority = Column(Integer)
     VM_periodpayoff = Column(Float)
     VM_cumulativepayoff = Column(Float)
+    VM_question_1 = Column(Integer)
+    VM_question_2 = Column(Integer)
 
     def __init__(self, period):
         self.VM_treatment = pms.TREATMENT

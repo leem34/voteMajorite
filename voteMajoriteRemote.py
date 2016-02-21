@@ -6,7 +6,7 @@ from client.cltremote import IRemote
 from twisted.internet import defer
 import voteMajoriteParams as pms
 import voteMajoriteTexts as texts_VM
-from voteMajoriteGui import GuiDecision, DSummary
+from voteMajoriteGui import GuiDecision, DSummary, DEchelle
 
 
 logger = logging.getLogger("le2m")
@@ -70,3 +70,16 @@ class RemoteVM(IRemote):
             hc.append(histo_line)
         return hc
 
+    def remote_display_additionalquestion(self, num_question):
+        logger.info(u"{} remote_display_additionalquestion({})".format(
+            self.le2mclt.uid, num_question))
+        if self.le2mclt.simulation:
+            checked = random.choice(texts_VM.get_items_question(num_question))
+            logger.info(u"{} send back {}".format(self.le2mclt.uid, checked))
+            return int(checked)
+        else:
+            defered = defer.Deferred()
+            screen = DEchelle(defered, self.le2mclt.automatique,
+                              self.le2mclt.screen, num_question)
+            screen.show()
+            return defered
