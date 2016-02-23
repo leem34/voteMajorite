@@ -265,7 +265,7 @@ class DEchelle(QtGui.QDialog):
         self._defered.callback(checked)
 
 
-class DQuestFinalTC(DQuestFinal):
+class DQuestFinalVM(DQuestFinal):
     def __init__(self, defered, automatique, parent):
         DQuestFinal.__init__(self, defered, automatique, parent)
 
@@ -280,25 +280,26 @@ class DQuestFinalTC(DQuestFinal):
         self.setFixedSize(self.size())
 
     def _accept(self):
+        try:
+            self._timer_automatique.stop()
+        except AttributeError:
+            pass
         inputs = self._get_inputs()
         if inputs:
 
             try:
-
                 inputs["naissance_ville"] = self._naissance_ville.get_text()
-
             except ValueError:
                 return QtGui.QMessageBox.warning(
                     self, le2mtrans(u"Warning"),
                     le2mtrans(u"You must answer to all the questions"))
 
             if not self._automatique:
-                confirm = QtGui.QMessageBox.question(
+                if QtGui.QMessageBox.question(
                     self, le2mtrans(u"Confirmation"),
                     le2mtrans(u"Do you confirm your answers?"),
-                    QtGui.QMessageBox.No | QtGui.QMessageBox.Yes)
-                if confirm != QtGui.QMessageBox.Yes:
-                    return
+                    QtGui.QMessageBox.No | QtGui.QMessageBox.Yes) != \
+                        QtGui.QMessageBox.Yes: return
 
             logger.info(u"Send back: {}".format(inputs))
             self.accept()

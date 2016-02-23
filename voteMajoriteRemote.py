@@ -6,7 +6,7 @@ from client.cltremote import IRemote
 from twisted.internet import defer
 import voteMajoriteParams as pms
 import voteMajoriteTexts as texts_VM
-from voteMajoriteGui import GuiDecision, DSummary, DEchelle, DQuestFinal
+from voteMajoriteGui import GuiDecision, DSummary, DEchelle, DQuestFinalVM
 
 
 logger = logging.getLogger("le2m")
@@ -120,7 +120,7 @@ class RemoteVM(IRemote):
             return inputs
         else:
             defered = defer.Deferred()
-            screen = DQuestFinal(defered, self.le2mclt.automatique,
+            screen = DQuestFinalVM(defered, self.le2mclt.automatique,
                                    self.le2mclt.screen)
             screen.show()
             return defered

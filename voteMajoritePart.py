@@ -120,13 +120,15 @@ class PartieVM(Partie):
         self.joueur.remove_waitmode()
 
     @defer.inlineCallbacks
-    def display_finalquest(self):
+    def display_questfinal(self):
         logger.debug(u"{} display_finalquest".format(self.joueur))
-        inputs = self.remote.callRemote("display_finalquest")
+        inputs = yield (self.remote.callRemote("display_finalquest"))
         part_questfinal = self.joueur.get_part("questionnaireFinal")
         for k, v in inputs.viewitems():
-            setattr(part_questfinal, k, v)
-            setattr(self.currentperiod, "VM_{}".format(k), v)
+            if k == "naissance_ville":
+                setattr(self.currentperiod, "VM_{}".format(k), v)
+            else:
+                setattr(part_questfinal, k, v)
         self.joueur.info('ok')
         self.joueur.remove_waitmode()
 
