@@ -119,6 +119,17 @@ class PartieVM(Partie):
         self.joueur.info(u"Ok")
         self.joueur.remove_waitmode()
 
+    @defer.inlineCallbacks
+    def display_finalquest(self):
+        logger.debug(u"{} display_finalquest".format(self.joueur))
+        inputs = self.remote.callRemote("display_finalquest")
+        part_questfinal = self.joueur.get_part("questionnaireFinal")
+        for k, v in inputs.viewitems():
+            setattr(part_questfinal, k, v)
+            setattr(self.currentperiod, "VM_{}".format(k), v)
+        self.joueur.info('ok')
+        self.joueur.remove_waitmode()
+
 
 
 class RepetitionsVM(Base):
@@ -143,6 +154,7 @@ class RepetitionsVM(Base):
     VM_cumulativepayoff = Column(Float)
     VM_question_1 = Column(Integer)
     VM_question_2 = Column(Integer)
+    VM_naissance_ville = Column(String)
 
     def __init__(self, period):
         self.VM_treatment = pms.TREATMENT

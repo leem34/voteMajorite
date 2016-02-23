@@ -35,6 +35,12 @@ class Serveur(object):
         self._le2mserv.gestionnaire_graphique.add_topartmenu(
             texts_VM.trans_VM(u"Majority Vote"), actions)
 
+        # final questionnaire
+        self._le2mserv.gestionnaire_graphique.screen.action_finalquest.\
+            triggered.disconnect()
+        self._le2mserv.gestionnaire_graphique.screen.action_finalquest.\
+            triggered.connect(lambda _: self._display_questfinal())
+
         self._profils = None
 
     def _configure(self):
@@ -178,3 +184,24 @@ class Serveur(object):
         yield (self._le2mserv.gestionnaire_experience.run_step(
             texts_VM.trans_VM(u"Additional questions"), players,
             "display_additionalquestion"))
+
+    @defer.inlineCallbacks
+    def _display_questfinal(self):
+        if not self._le2mserv.gestionnaire_base.is_created():
+            self._le2mserv.gestionnaire_graphique.display_warning(
+                le2mtrans(u"There is no database yet. You first need to "
+                          u"load at least one part."))
+            return
+        if not hasattr(self, "_tous"):
+            self._le2mserv.gestionnaire_graphique.display_warning(
+                texts_VM.trans_VM(u"You must play the part before to "
+                                  u"start the questionnaire"))
+            return
+
+        if not self._le2mserv.gestionnaire_graphique.question(
+                le2mtrans(u"Start the final questionnaire?")):
+            return
+
+        yield (self._le2mserv.gestionnaire_experience.run_step(
+            le2mtrans(u"Final questionnaire"), self._tous,
+            "display_questfinal"))

@@ -6,9 +6,10 @@ import voteMajoriteParams as pms
 import voteMajoriteTexts as texts_VM
 from voteMajoriteGuiSrc import VM_pol
 from client.cltgui.cltguiwidgets import WExplication, WRadio, WListDrag, \
-    WTableview
+    WTableview, WLineEdit
 from client.cltgui.cltguitablemodels import TableModelHistorique
 from util.utili18n import le2mtrans
+from client.cltgui.cltguidialogs import DQuestFinal
 
 
 logger = logging.getLogger("le2m")
@@ -262,3 +263,46 @@ class DEchelle(QtGui.QDialog):
         logger.info(u"Send back: {}".format(checked))
         self.accept()
         self._defered.callback(checked)
+
+
+class DQuestFinalTC(DQuestFinal):
+    def __init__(self, defered, automatique, parent):
+        DQuestFinal.__init__(self, defered, automatique, parent)
+
+        self._naissance_ville = WLineEdit(
+            parent=self, automatique=self._automatique,
+            label=texts_VM.trans_VM(u"Town of birth"),
+            list_of_possible_values=[u"Paris", u"Marseille", u"Lyon",
+                                     u"Montpellier"])
+        self._gridlayout.addWidget(self._naissance_ville, 0, 2)
+
+        self.adjustSize()
+        self.setFixedSize(self.size())
+
+    def _accept(self):
+        inputs = self._get_inputs()
+        if inputs:
+
+            try:
+
+                inputs["naissance_ville"] = self._naissance_ville.get_text()
+
+            except ValueError:
+                return QtGui.QMessageBox.warning(
+                    self, le2mtrans(u"Warning"),
+                    le2mtrans(u"You must answer to all the questions"))
+
+            if not self._automatique:
+                confirm = QtGui.QMessageBox.question(
+                    self, le2mtrans(u"Confirmation"),
+                    le2mtrans(u"Do you confirm your answers?"),
+                    QtGui.QMessageBox.No | QtGui.QMessageBox.Yes)
+                if confirm != QtGui.QMessageBox.Yes:
+                    return
+
+            logger.info(u"Send back: {}".format(inputs))
+            self.accept()
+            self._defered.callback(inputs)
+
+        else:
+            return
