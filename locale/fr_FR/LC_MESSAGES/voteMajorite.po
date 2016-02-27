@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: voteMajorite\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-23 19:47+0100\n"
-"PO-Revision-Date: 2016-02-23 19:49+0100\n"
+"PO-Revision-Date: 2016-02-27 13:27+0100\n"
 "Last-Translator: Dimitri DUBOIS <dimitri.dubois@umontpellier.fr>\n"
 "Language-Team: Dimitri DUBOIS <dimitri.dubois@umontpellier.fr>\n"
 "Language: fr_FR\n"
@@ -122,11 +122,11 @@ msgstr "La politique est {}"
 
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:78
 msgid "applied"
-msgstr "appliquée"
+msgstr "mise en oeuvre"
 
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:80
 msgid "is not applied"
-msgstr "n'est pas appliquée"
+msgstr "n'est pas mise en oeuvre"
 
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:83
 msgid "Your payoff is equal to"
@@ -141,7 +141,8 @@ msgid ""
 "If the policy applies it will cost you {} and will provide you a payoff of "
 "{}."
 msgstr ""
-"Si la politique est appliquée elle vous coûtera {} et vous rapportera {}."
+"Si la politique est mise en oeuvre elle vous coûtera {} et vous rapportera "
+"{}."
 
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:102
 msgid "You must vote either in favor of or against the policy."
