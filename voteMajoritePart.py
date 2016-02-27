@@ -100,9 +100,10 @@ class PartieVM(Partie):
     def compute_partpayoff(self):
         logger.debug(u"{} Part Payoff".format(self.joueur))
 
-        self.VM_gain_ecus = self.currentperiod.VM_cumulativepayoff + pms.DOTATION
-        self.VM_gain_euros = \
-            float(self.VM_gain_ecus) * float(pms.TAUX_CONVERSION)
+        self.VM_gain_ecus = pms.DOTATION + self.currentperiod.VM_cumulativepayoff
+        self.VM_gain_euros = float("{:.2f}".format(
+            float(self.VM_gain_ecus) * float(pms.TAUX_CONVERSION)))
+
         yield (self.remote.callRemote(
             "set_payoffs", self.VM_gain_euros, self.VM_gain_ecus))
 

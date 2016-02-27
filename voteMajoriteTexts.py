@@ -81,13 +81,15 @@ def get_text_summary(periods_content):
 
     gains = [line.get("VM_periodpayoff") for line in periods_content]
     txt += u"<br />" + trans_VM(u"Your payoff is equal to") + \
-           u" {} = {}, ".format(
+           u" {} + {} = {}, ".format(
+               pms.DOTATION,
                " + ".join(map(str, gains)),
                get_pluriel(periods_content[-1].get(
-                   "VM_cumulativepayoff"), pms.MONNAIE)) + \
+                   "VM_cumulativepayoff") + pms.DOTATION, pms.MONNAIE)) + \
            trans_VM(u"which corresponds to") + \
-           u" {}.".format(get_pluriel(periods_content[-1].get(
-               "VM_cumulativepayoff") * pms.TAUX_CONVERSION, u"euro"))
+           u" {}.".format(get_pluriel((periods_content[-1].get(
+               "VM_cumulativepayoff") + pms.DOTATION) * pms.TAUX_CONVERSION,
+                                      u"euro"))
     return txt
 
 

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: voteMajorite\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-23 19:47+0100\n"
-"PO-Revision-Date: 2016-02-27 13:27+0100\n"
+"PO-Revision-Date: 2016-02-27 13:30+0100\n"
 "Last-Translator: Dimitri DUBOIS <dimitri.dubois@umontpellier.fr>\n"
 "Language-Team: Dimitri DUBOIS <dimitri.dubois@umontpellier.fr>\n"
 "Language: fr_FR\n"
@@ -146,7 +146,7 @@ msgstr ""
 
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:102
 msgid "You must vote either in favor of or against the policy."
-msgstr "Vous devez voter pour ou contre la politique."
+msgstr "Vous devez voter pour ou contre la mise en œuvre de la politique."
 
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteGui.py:77
 msgid "You vote"
