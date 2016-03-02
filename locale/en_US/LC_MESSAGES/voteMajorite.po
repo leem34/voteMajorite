@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: voteMajorite\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-23 19:47+0100\n"
-"PO-Revision-Date: 2016-02-27 13:27+0100\n"
+"POT-Creation-Date: 2016-03-02 13:23+0100\n"
+"PO-Revision-Date: 2016-03-02 13:25+0100\n"
 "Last-Translator: Dimitri DUBOIS <dimitri.dubois@umontpellier.fr>\n"
 "Language-Team: Dimitri DUBOIS <dimitri.dubois@umontpellier.fr>\n"
 "Language: en_US\n"
@@ -71,7 +71,7 @@ msgstr ""
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:37
 msgid ""
 "En utilisant l'échelle ci-contre, indiquez votre niveau de certitude au "
-"moment où vous avez voté, sachant que<br />1=totalement incertain et "
+"moment où<br />vous avez voté, sachant que<br />1=totalement incertain et "
 "10=totalement certain"
 msgstr ""
 
@@ -83,7 +83,7 @@ msgid ""
 msgstr ""
 
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:62
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:95
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:97
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteGui.py:31
 msgid "Policy"
 msgstr ""
@@ -125,17 +125,17 @@ msgstr ""
 msgid "Your payoff is equal to"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:88
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:89
 msgid "which corresponds to"
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:97
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:99
 msgid ""
 "If the policy applies it will cost you {} and will provide you a payoff of "
 "{}."
 msgstr ""
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:102
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:104
 msgid "You must vote either in favor of or against the policy."
 msgstr ""
 

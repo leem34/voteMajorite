@@ -35,7 +35,7 @@ def get_vote(code_or_name):
 ADDITIONNAL_QUESTIONS = {
     1: {
         "text": trans_VM(u"En utilisant l'échelle ci-contre, indiquez votre "
-                         u"niveau de certitude au moment où vous avez voté, "
+                         u"niveau de certitude au moment où<br />vous avez voté, "
                          u"sachant que<br />"
                          u"1=totalement incertain et 10=totalement certain"),
         "items": map(str, range(1, 11))
