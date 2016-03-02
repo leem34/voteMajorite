@@ -135,7 +135,7 @@ class DSummary(QtGui.QDialog):
         layout = QtGui.QVBoxLayout(self)
 
         wexplanation = WExplication(
-            text=text_summary, parent=self, size=(600, 100))
+            text=text_summary, parent=self, size=(650, 150))
         layout.addWidget(wexplanation)
 
         wprofiles = WPolitics(
@@ -144,7 +144,7 @@ class DSummary(QtGui.QDialog):
 
         model_summary = TableModelHistorique(list_summary)
         wsummary = WTableview(
-            parent=self, tablemodel=model_summary, size=(600, 160))
+            parent=self, tablemodel=model_summary, size=(650, 160))
         wsummary.ui.tableView.verticalHeader().setResizeMode(
             QtGui.QHeaderView.Stretch)
         layout.addWidget(wsummary)
