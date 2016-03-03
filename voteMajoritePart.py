@@ -157,6 +157,8 @@ class RepetitionsVM(Base):
     VM_cumulativepayoff = Column(Float)
     VM_question_1 = Column(Integer)
     VM_question_2 = Column(Integer)
+    VM_question_3 = Column(Integer)
+    VM_question_4 = Column(Integer)
     VM_naissance_ville = Column(String)
 
     def __init__(self, period):
