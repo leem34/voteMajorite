@@ -46,6 +46,18 @@ ADDITIONNAL_QUESTIONS = {
                          u"sachant que<br />"
                          u"1=totalement triste et 7=totalement heureux(se)"),
         "items": map(str, range(1, 8))
+    },
+    3: {
+        "text": trans_VM(u"En utilisant l'échelle ci-dessous, indiquez dans "
+                         u"quelle mesure<br />vous avez été honnête durant "
+                         u"l'expérience"),
+        "items": map(str, range(1, 8))
+    },
+    4: {
+        "text": trans_VM(u"En utilisant l'échelle ci-dessous, indiquez dans "
+                         u"quelle mesure<br />les autres sujets ont été honnêtes "
+                         u"durant l'expérience"),
+        "items": map(str, range(1, 8))
     }
 }
 
