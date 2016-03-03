@@ -31,7 +31,6 @@ def get_vote(code_or_name):
     return None
 
 
-
 ADDITIONNAL_QUESTIONS = {
     1: {
         "text": trans_VM(u"En utilisant l'échelle ci-contre, indiquez votre "
@@ -50,13 +49,15 @@ ADDITIONNAL_QUESTIONS = {
     3: {
         "text": trans_VM(u"En utilisant l'échelle ci-dessous, indiquez dans "
                          u"quelle mesure<br />vous avez été honnête durant "
-                         u"l'expérience"),
+                         u"l'expérience, sachant que<br />1=totalement "
+                         u"malhonnête et 7=totalement honnête"),
         "items": map(str, range(1, 8))
     },
     4: {
         "text": trans_VM(u"En utilisant l'échelle ci-dessous, indiquez dans "
                          u"quelle mesure<br />les autres sujets ont été honnêtes "
-                         u"durant l'expérience"),
+                         u"durant l'expérience, sachant que<br />1=totalement "
+                         u"malhonnête et 7=totalement honnête"),
         "items": map(str, range(1, 8))
     }
 }
