@@ -285,7 +285,7 @@ class DQuestFinalVM(DQuestFinal):
         except AttributeError:
             pass
         inputs = self._get_inputs()
-        if inputs:
+        if type(inputs) is dict:
 
             try:
                 inputs["naissance_ville"] = self._naissance_ville.get_text()
