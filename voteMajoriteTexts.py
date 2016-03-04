@@ -87,8 +87,8 @@ def get_text_summary(periods_content):
                 get_pluriel(line.get("VM_contre"), trans_VM(u"people")),
                 get_vote(line.get("VM_majority")))
 
-        txt += u" <strong>" + trans_VM(u"The policy is" + u" " + u"{}").format(
-            trans_VM(u"applied") if \
+        txt += u" <strong>" + trans_VM(u"The policy") + u" " + u"{}".format(
+            trans_VM(u"is applied") if \
             line.get("VM_majority") == pms.IN_FAVOR else
             trans_VM(u"is not applied")) + u".</strong><br />"
 

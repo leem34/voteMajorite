@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: voteMajorite\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-02 13:45+0100\n"
-"PO-Revision-Date: 2016-03-02 13:46+0100\n"
+"POT-Creation-Date: 2016-03-04 09:28+0100\n"
+"PO-Revision-Date: 2016-03-04 09:29+0100\n"
 "Last-Translator: Dimitri DUBOIS <dimitri.dubois@umontpellier.fr>\n"
 "Language-Team: Dimitri DUBOIS <dimitri.dubois@umontpellier.fr>\n"
 "Language: fr_FR\n"
@@ -69,7 +69,7 @@ msgstr "Questions supplémentaires"
 msgid "You must play the part before to start the questionnaire"
 msgstr "Il faut lancer la partie avant de lancer le questionnaire"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:37
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:36
 msgid ""
 "En utilisant l'échelle ci-contre, indiquez votre niveau de certitude<br />au "
 "moment où vous avez voté, sachant que<br />1=totalement incertain et "
@@ -79,7 +79,7 @@ msgstr ""
 "moment où vous avez voté, sachant que<br />1=totalement incertain et "
 "10=totalement certain"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:44
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:43
 msgid ""
 "En utilisant l'échelle ci-contre, indiquez à quel point, <br />vous êtes "
 "heureux(se) en ce moment, sachant que<br />1=totalement triste et "
@@ -89,54 +89,74 @@ msgstr ""
 "heureux(se) en ce moment, sachant que<br />1=totalement triste et "
 "7=totalement heureux(se)"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:62
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:97
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:50
+msgid ""
+"En utilisant l'échelle ci-dessous, indiquez dans quelle mesure<br />vous "
+"avez été honnête durant l'expérience, sachant que<br />1=totalement "
+"malhonnête et 7=totalement honnête"
+msgstr ""
+"En utilisant l'échelle ci-dessous, indiquez dans quelle mesure<br />vous "
+"avez été honnête durant l'expérience, sachant que<br />1=totalement "
+"malhonnête et 7=totalement honnête"
+
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:57
+msgid ""
+"En utilisant l'échelle ci-dessous, indiquez dans quelle mesure<br />les "
+"autres sujets ont été honnêtes durant l'expérience, sachant que<br /"
+">1=totalement malhonnête et 7=totalement honnête"
+msgstr ""
+"En utilisant l'échelle ci-dessous, indiquez dans quelle mesure<br />les "
+"autres sujets ont été honnêtes durant l'expérience, sachant que<br /"
+">1=totalement malhonnête et 7=totalement honnête"
+
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:75
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:110
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteGui.py:31
 msgid "Policy"
 msgstr "Politique"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:62
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:75
 msgid "Your vote"
 msgstr "Votre vote"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:63
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:76
 msgid "The majority vote"
 msgstr "Le vote majoritaire"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:63
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:76
 msgid "Your payoff"
 msgstr "Votre gain"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:70
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:83
 msgid "Policy {}: {} \"In favor\", {} \"Against\", Majority: \"{}\". "
 msgstr "Poliltique {}: {} \"Pour\",  {} \"Contre\", Majorité: \"{}\"."
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:73
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:74
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:86
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:87
 msgid "people"
 msgstr "personne"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:77
-msgid "The policy is {}"
-msgstr "La politique est {}"
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:90
+msgid "The policy"
+msgstr "La politique"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:78
-msgid "applied"
-msgstr "mise en oeuvre"
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:91
+msgid "is applied"
+msgstr "est mise en œuvre"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:80
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:93
 msgid "is not applied"
-msgstr "n'est pas mise en oeuvre"
+msgstr "n'est pas mise en œuvre"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:83
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:96
 msgid "Your payoff is equal to"
 msgstr "Votre gain est de"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:89
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:102
 msgid "which corresponds to"
 msgstr "soit"
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:99
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:112
 msgid ""
 "If the policy applies it will cost you {} and will provide you a payoff of "
 "{}."
@@ -144,7 +164,7 @@ msgstr ""
 "Si la politique est mise en oeuvre elle vous coûtera {} et vous rapportera "
 "{}."
 
-#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:104
+#: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteTexts.py:117
 msgid "You must vote either in favor of or against the policy."
 msgstr "Vous devez voter pour ou contre la mise en œuvre de la politique."
 
@@ -171,6 +191,9 @@ msgstr "Vous devez sélectionner un élément"
 #: /home/irtimid/Documents/travail/programmes/le2m-v2.1/le2m/parts/voteMajorite/voteMajoriteGui.py:274
 msgid "Town of birth"
 msgstr "Ville de naissance"
+
+#~ msgid "applied"
+#~ msgstr "mise en oeuvre"
 
 #~ msgid " <strong>The policy is {}</strong><br />"
 #~ msgstr "La politique est {}<br />"
